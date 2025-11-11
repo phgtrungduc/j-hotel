@@ -1,0 +1,21 @@
+@use "../../../../assets/scss-core/variables" as *;
+
+.footer-bg {
+  background-color: $primary; // Màu đỏ burgundy chủ đạo
+}
+
+footer {
+  a i {
+    font-size: 1.5rem; // text-sm
+  }
+
+  a {
+    transition: all 0.3s ease;
+    text-decoration: none;
+
+    &:hover {
+      background-color: lighten($gray, 45%);
+    }
+  }
+
+}

@@ -1,0 +1,52 @@
+<div>
+    <div class="hero-section">
+        <div class="overlay">
+            <div class="hero-content">
+                <h1 class="page-heading page-heading-center">CÙNG <span class="highlight">J VILLAGE</span> LÀM NÊN TRẢI NGHIỆM <br>TỪ NHỮNG ĐIỀU
+                    NHỎ NHẤT!</h1>
+                <p class="description">
+                    Khám phá 33 "ngôi làng" chưa đến đã quen. Là 33 trải nghiệm lưu trú từ cao cấp đến phổ thông,
+                    đều được làm nên từ những điều nhỏ nhất, trong thiết kế, dịch vụ và con người. Trên mọi tọa độ
+                    văn hóa, cho mọi cá tính. Chúng là Village - Chuỗi khách sạn Thế hệ Mới. Be more together!
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="body-section">
+        <div class="room-section">      
+            <div class="room-tabs">
+                <button class="tab-btn" [class.active]="activeTab === 'all'" (click)="changeTab('all')">Tất cả các
+                    phòng</button>
+                <button class="tab-btn" [class.active]="activeTab === 'DeluxeRoom'" (click)="changeTab('DeluxeRoom')">Deluxe Room</button>
+                <!-- <button class="tab-btn" [class.active]="activeTab === 'EClass'" (click)="changeTab('EClass')">E Class</button>
+                <button class="tab-btn" [class.active]="activeTab === 'SClass'" (click)="changeTab('SClass')">S Class</button> -->
+                <button class="tab-btn" [class.active]="activeTab === 'SuperiorRoom'" (click)="changeTab('SuperiorRoom')">Superior Room</button>
+                <div class="room-tabs-bottom-line"></div>
+            </div>
+            <div class="room-display" *ngIf="visibleRoomTypes.length">
+                <ng-container *ngFor="let room of visibleRoomTypes">
+                    <div class="room-card">
+                        <div class="room-info">
+                            <div class="room-title">{{ room.title }}</div>
+                            <span class="room-description">{{ room.description }}</span>
+                            <button (click)="navigateToOrder()" class="view-btn">{{ room.title }} &rarr;</button>
+                        </div>
+                        <div class="room-image">
+                            <img [src]="room.image" [alt]="room.title">
+                        </div>
+                    </div>
+                    <div class="location-grid">
+                        <div class="location-card" *ngFor="let location of room.locations">
+                            <div class="location-image">
+                                <img [src]="location.image" [alt]="location.name">
+                                <div class="arrow-overlay">
+                                    <span class="arrow">→</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <app-member-section></app-member-section>

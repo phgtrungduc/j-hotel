@@ -1,0 +1,364 @@
+---
+alwaysApply: true
+---
+# J-Village Project Rules for Cursor IDE
+
+## File Organization Rules
+
+### Pages Components
+- **Location**: `src/app/component/Pages/`
+- **Purpose**: Components that display as pages when generated
+- **Structure**: Each page should have its own folder with:
+  - `[page-name].component.html`
+  - `[page-name].component.scss` 
+  - `[page-name].component.ts`
+- **Naming**: Use kebab-case for folder and file names
+- **Examples**: `homepage/`, `room-detail/`, `order/`, `brand/`, `member/`
+
+### Shared Components
+- **Location**: `src/app/component/Share/`
+- **Purpose**: Reusable components used across multiple pages
+- **Structure**: Each component should have its own folder with:
+  - `[component-name].component.html`
+  - `[component-name].component.scss`
+  - `[component-name].component.ts`
+- **Naming**: Use kebab-case for folder and file names
+- **Examples**: `room-card/`, `room-order-card/`
+
+### Images
+- **Location**: `public/images/`
+- **Purpose**: All project images and assets
+- **Organization**: Group images in subdirectories by category
+- **Naming**: Use kebab-case for file names
+- **Formats**: .jpg, .png, .svg, .webp
+- **Examples**: `room-card/`, `room-detail/`, `room-card-order/`
+
+## Naming Conventions
+
+### Files and Folders
+- Use **kebab-case** for all file and folder names
+- Examples: `room-detail`, `home-page`, `room-card`
+
+### Component Classes
+- Use **PascalCase** for component class names
+- Examples: `RoomDetailComponent`, `HomePageComponent`
+
+### Images
+- Use **kebab-case** for image file names
+- Examples: `room-detail-1.jpg`, `homepage-banner.png`
+
+## Development Workflow
+
+### Creating New Pages
+1. Create folder in `src/app/component/Pages/[page-name]/`
+2. Create component files: `.html`, `.scss`, `.ts`
+3. Register route in `app.routes.ts`
+4. Add related images to `public/images/`
+
+### Creating New Shared Components
+1. Create folder in `src/app/component/Share/[component-name]/`
+2. Create component files: `.html`, `.scss`, `.ts`
+3. Make component standalone with proper imports
+4. Add @Input() properties for customization
+5. Export component for reuse across pages
+6. Import in parent components that use it
+
+### Adding New Images
+1. Place images in appropriate `public/images/` subdirectory
+2. Create subdirectories if needed for organization
+3. Use relative paths: `/images/[folder]/[image-name]`
+
+## Important Guidelines
+
+- **NEVER** place page components in the Share directory
+- **NEVER** place shared components in the Pages directory
+- **ALWAYS** organize images by category in subdirectories
+- **ALWAYS** follow naming conventions for consistency
+- **ALWAYS** check routing when creating new pages
+- **ALWAYS** test shared components across multiple pages
+- **ALWAYS** use responsive design with flexible units (clamp, %, vw, vh)
+- **NEVER** use fixed pixel values for layout dimensions
+- **ALWAYS** include mobile-first media queries
+- **ALWAYS** test on multiple screen sizes
+
+## SCSS Rules
+
+### Global Styles
+- **Location**: `src/styles.scss`
+- **Purpose**: Common styles used across multiple components
+- **Usage**: Import variables and define global styles
+
+### Variables
+- **Location**: `src/assets/scss-core/_variables.scss`
+- **Purpose**: All color variables, spacing, typography, and other design tokens
+- **Rules**:
+  - **NEVER** declare colors directly in component SCSS files
+  - **ALWAYS** use variables from `_variables.scss`
+  - **NEVER** create duplicate color definitions
+  - **ALWAYS** use semantic color names (primary, secondary, etc.)
+
+### Component SCSS
+- **Location**: `src/app/component/[type]/[component-name]/[component-name].component.scss`
+- **Rules**:
+  - **MUST** use variables: `@use "../../../../assets/scss-core/variables" as *;` (for component files)
+  - **MUST** use variables: `@use "assets/scss-core/variables" as *;` (for root files like styles.scss)
+  - **MUST** use color variables from `_variables.scss`
+  - **NEVER** declare hardcoded colors
+  - **NEVER** create new color variables
+  - **ALWAYS** use semantic color names
+
+### Color Usage Examples
+```scss
+// ✅ CORRECT - Using variables
+.button {
+  background-color: $primary;
+  color: $white;
+  border: 1px solid $secondary;
+}
+
+// ❌ WRONG - Hardcoded colors
+.button {
+  background-color: #354a21;
+  color: #fff;
+  border: 1px solid #ffb01f;
+}
+```
+
+## Auto-Generation Templates
+
+When creating new files, Cursor should suggest these templates:
+
+### Page Component Template
+```typescript
+// [page-name].component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-[page-name]',
+  templateUrl: './[page-name].component.html',
+  styleUrls: ['./[page-name].component.scss']
+})
+export class [PageName]Component {
+  // Component logic here
+}
+```
+
+### Shared Component Template
+```typescript
+// [component-name].component.ts
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-[component-name]',
+  templateUrl: './[component-name].component.html',
+  styleUrls: ['./[component-name].component.scss']
+})
+export class [ComponentName]Component {
+  @Input() data: any;
+  @Output() action = new EventEmitter<any>();
+  
+  // Component logic here
+}
+```
+
+### Component SCSS Template
+```scss
+// [component-name].component.scss
+@use "../../../../assets/scss-core/variables" as *;
+
+.component-name {
+  // Use variables from _variables.scss
+  color: $text-color;
+  background-color: $body-bg;
+  border: 1px solid $line-border;
+  
+  // Responsive design
+  @media (max-width: 768px) {
+    // Mobile styles
+  }
+  
+  @media (max-width: 1024px) {
+    // Tablet styles
+  }
+}
+``` # J-Village Project Rules for Cursor IDE
+
+## File Organization Rules
+
+### Pages Components
+- **Location**: `src/app/component/Pages/`
+- **Purpose**: Components that display as pages when generated
+- **Structure**: Each page should have its own folder with:
+  - `[page-name].component.html`
+  - `[page-name].component.scss` 
+  - `[page-name].component.ts`
+- **Naming**: Use kebab-case for folder and file names
+- **Examples**: `homepage/`, `room-detail/`, `order/`, `brand/`, `member/`
+
+### Shared Components
+- **Location**: `src/app/component/Share/`
+- **Purpose**: Reusable components used across multiple pages
+- **Structure**: Each component should have its own folder with:
+  - `[component-name].component.html`
+  - `[component-name].component.scss`
+  - `[component-name].component.ts`
+- **Naming**: Use kebab-case for folder and file names
+- **Examples**: `room-card/`, `room-order-card/`
+
+### Images
+- **Location**: `public/images/`
+- **Purpose**: All project images and assets
+- **Organization**: Group images in subdirectories by category
+- **Naming**: Use kebab-case for file names
+- **Formats**: .jpg, .png, .svg, .webp
+- **Examples**: `room-card/`, `room-detail/`, `room-card-order/`
+
+## Naming Conventions
+
+### Files and Folders
+- Use **kebab-case** for all file and folder names
+- Examples: `room-detail`, `home-page`, `room-card`
+
+### Component Classes
+- Use **PascalCase** for component class names
+- Examples: `RoomDetailComponent`, `HomePageComponent`
+
+### Images
+- Use **kebab-case** for image file names
+- Examples: `room-detail-1.jpg`, `homepage-banner.png`
+
+## Development Workflow
+
+### Creating New Pages
+1. Create folder in `src/app/component/Pages/[page-name]/`
+2. Create component files: `.html`, `.scss`, `.ts`
+3. Register route in `app.routes.ts`
+4. Add related images to `public/images/`
+
+### Creating New Shared Components
+1. Create folder in `src/app/component/Share/[component-name]/`
+2. Create component files: `.html`, `.scss`, `.ts`
+3. Make component standalone with proper imports
+4. Add @Input() properties for customization
+5. Export component for reuse across pages
+6. Import in parent components that use it
+
+### Adding New Images
+1. Place images in appropriate `public/images/` subdirectory
+2. Create subdirectories if needed for organization
+3. Use relative paths: `/images/[folder]/[image-name]`
+
+## Important Guidelines
+
+- **NEVER** place page components in the Share directory
+- **NEVER** place shared components in the Pages directory
+- **ALWAYS** organize images by category in subdirectories
+- **ALWAYS** follow naming conventions for consistency
+- **ALWAYS** check routing when creating new pages
+- **ALWAYS** test shared components across multiple pages
+- **ALWAYS** use responsive design with flexible units (clamp, %, vw, vh)
+- **NEVER** use fixed pixel values for layout dimensions
+- **ALWAYS** include mobile-first media queries
+- **ALWAYS** test on multiple screen sizes
+
+## SCSS Rules
+
+### Global Styles
+- **Location**: `src/styles.scss`
+- **Purpose**: Common styles used across multiple components
+- **Usage**: Import variables and define global styles
+
+### Variables
+- **Location**: `src/assets/scss-core/_variables.scss`
+- **Purpose**: All color variables, spacing, typography, and other design tokens
+- **Rules**:
+  - **NEVER** declare colors directly in component SCSS files
+  - **ALWAYS** use variables from `_variables.scss`
+  - **NEVER** create duplicate color definitions
+  - **ALWAYS** use semantic color names (primary, secondary, etc.)
+
+### Component SCSS
+- **Location**: `src/app/component/[type]/[component-name]/[component-name].component.scss`
+- **Rules**:
+  - **MUST** use variables: `@use "../../../../assets/scss-core/variables" as *;` (for component files)
+  - **MUST** use variables: `@use "assets/scss-core/variables" as *;` (for root files like styles.scss)
+  - **MUST** use color variables from `_variables.scss`
+  - **NEVER** declare hardcoded colors
+  - **NEVER** create new color variables
+  - **ALWAYS** use semantic color names
+
+### Color Usage Examples
+```scss
+// ✅ CORRECT - Using variables
+.button {
+  background-color: $primary;
+  color: $white;
+  border: 1px solid $secondary;
+}
+
+// ❌ WRONG - Hardcoded colors
+.button {
+  background-color: #354a21;
+  color: #fff;
+  border: 1px solid #ffb01f;
+}
+```
+
+## Auto-Generation Templates
+
+When creating new files, Cursor should suggest these templates:
+
+### Page Component Template
+```typescript
+// [page-name].component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-[page-name]',
+  templateUrl: './[page-name].component.html',
+  styleUrls: ['./[page-name].component.scss']
+})
+export class [PageName]Component {
+  // Component logic here
+}
+```
+
+### Shared Component Template
+```typescript
+// [component-name].component.ts
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-[component-name]',
+  templateUrl: './[component-name].component.html',
+  styleUrls: ['./[component-name].component.scss']
+})
+export class [ComponentName]Component {
+  @Input() data: any;
+  @Output() action = new EventEmitter<any>();
+  
+  // Component logic here
+}
+```
+
+### Component SCSS Template
+```scss
+// [component-name].component.scss
+@use "../../../../assets/scss-core/variables" as *;
+
+.component-name {
+  // Use variables from _variables.scss
+  color: $text-color;
+  background-color: $body-bg;
+  border: 1px solid $line-border;
+  
+  // Responsive design
+  @media (max-width: 768px) {
+    // Mobile styles
+  }
+  
+  @media (max-width: 1024px) {
+    // Tablet styles
+  }
+}
+``` 

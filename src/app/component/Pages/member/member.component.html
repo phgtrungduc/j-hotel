@@ -1,0 +1,101 @@
+<div class="member-page">
+  <div class="faq-container">
+    <!-- Header -->
+    <div class="faq-header">
+      <h2 class="section-heading section-heading-center">
+        <span class="question-text">Bạn hỏi?</span>
+        <br>
+        <span class="answer-text">J Village trả lời</span>
+      </h2>
+    </div>
+
+    <!-- FAQ Sections -->
+    <div class="faq-sections">
+      <div 
+        *ngFor="let section of faqSections" 
+        class="faq-section"
+        [class.expanded]="section.isExpanded"
+        [class.section-c]="section.id === 'C'"
+      >
+        <!-- Section Header -->
+        <div class="section-header" (click)="toggleSection(section)">
+          <div class="section-title">
+            <span class="section-id">{{ section.id }}</span>
+            <span class="section-text">– {{ section.title }}</span>
+          </div>
+          <div class="section-icon">
+            <span *ngIf="!section.isExpanded">▼</span>
+            <span *ngIf="section.isExpanded">▲</span>
+          </div>
+        </div>
+
+        <!-- Section Content -->
+        <div class="section-content" *ngIf="section.isExpanded">
+          <div 
+            *ngFor="let item of section.items; let i = index" 
+            class="faq-item"
+            [class.last-item]="i === section.items.length - 1"
+          >
+            <!-- Item Header -->
+            <div class="item-header" (click)="toggleItem(item)">
+              <div class="item-question">
+                <span class="item-number">{{ i + 1 }}.</span>
+                <span class="item-text">{{ item.question }}</span>
+              </div>
+              <div class="item-icon">
+                <span *ngIf="!item.isExpanded">+</span>
+                <span *ngIf="item.isExpanded">−</span>
+              </div>
+            </div>
+
+            <!-- Item Answer -->
+            <div class="item-answer" *ngIf="item.isExpanded">
+              <div class="answer-text" [innerHTML]="formatAnswer(item.answer)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials Section -->
+  <div class="testimonials-section">
+    <div class="testimonials-container">
+      <h2 class="section-heading section-heading-center">Khách hàng nói gì về J Village?</h2>
+      
+      <div class="testimonials-carousel">
+        <div class="carousel-container">
+          <div class="carousel-track" [style.transform]="'translateX(' + getCarouselTransform() + '%)'">
+            <div 
+              *ngFor="let testimonial of testimonials; let i = index" 
+              class="testimonial-card"
+              [class.active]="i === currentSlide"
+              [style.background-image]="'url(' + testimonial.backgroundImage + ')'"
+            >
+              <div class="card-overlay">
+                <div class="card-category">{{ testimonial.category }}</div>
+                <div class="card-quote">
+                  <span [innerHTML]="formatQuote(testimonial.quote)"></span>
+                </div>
+                <div class="card-attribution">
+                  <div class="attribution-title">{{ testimonial.attribution.title }}</div>
+                  <div class="attribution-company">{{ testimonial.attribution.company }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <div class="carousel-navigation">
+          <button class="carousel-nav prev" (click)="previousSlide()" [disabled]="currentSlide === 0">
+            ‹
+          </button>
+          <button class="carousel-nav next" (click)="nextSlide()" [disabled]="currentSlide === testimonials.length - 1">
+            ›
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

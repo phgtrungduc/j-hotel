@@ -1,0 +1,12 @@
+<div class="bg-white rounded-xl overflow-hidden shadow-md max-w-sm">
+  <img [src]="currentRoom.ImageUrl ? currentRoom.ImageUrl : 'assets/images/default-room.png'" alt="Hotel"
+    class="w-full h-48 object-cover" />
+  <div class="p-4">
+    <p class="text-sm text-gray-500">{{currentRoom.ShortAddess}}</p>
+    <h2 class="text-lg font-semibold">{{currentRoom.Name}}</h2>
+    <p class="text-sm text-gray-700 mt-2 line-clamp-2">
+      {{currentRoom.Description}}
+    </p>
+    <button class="mt-4 btn-primary px-4 py-2 btn btn-rounded">Khám phá →</button>
+  </div>
+</div>

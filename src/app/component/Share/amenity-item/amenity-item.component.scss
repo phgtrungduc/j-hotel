@@ -1,0 +1,31 @@
+@use "variables" as *;
+
+.amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: $amenity-bg;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+  }
+
+  i {
+    font-size: 12px;
+    color: $amenity-orange;
+    width: 14px;
+    text-align: center;
+  }
+
+  span {
+    font-size: 11px;
+    color: $black;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+} 

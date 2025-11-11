@@ -1,0 +1,80 @@
+@use "../../../../assets/scss-core/variables" as *;
+header {
+  // background-color: transparent;
+  background-color: $primary;
+  transition: background-color 0.3s ease;
+
+  .header-container {
+    color: white;
+
+    .menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 1.5rem;
+
+      a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+
+        &:hover {
+          color: $secondary;
+        }
+
+        &.active {
+          color: $secondary;
+          border-bottom: 2px solid $secondary;
+        }
+      }
+    }
+
+    .actions {
+      button {
+        border: 1px solid white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        background: transparent;
+        color: white;
+        transition: background 0.3s, color 0.3s;
+
+        &:hover {
+          background: white;
+          color: $danger;
+        }
+      }
+    }
+  }
+
+  &.scrolled {
+    background-color: white; // red-600
+
+    .header-container {
+      color: black;
+
+      .menu a {
+        color: black;
+
+        &:hover {
+          color: $secondary;
+        }
+
+        &.active {
+          color: $secondary;
+          border-bottom: 2px solid $secondary;
+        }
+      }
+
+      .actions button {
+        border-color: black;
+        color: black;
+
+        &:hover {
+          background: black;
+          color: white;
+        }
+      }
+    }
+  }
+}

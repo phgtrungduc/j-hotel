@@ -1,0 +1,45 @@
+<div class="room-card">
+    <div class="image-wrapper">
+        <img [src]="currentRoom.ImageUrl ? currentRoom.ImageUrl : 'assets/images/default-room.png'" alt="Hotel room" />
+    </div>
+
+    <div class="info">
+        <h3 class="title">{{currentRoom.Name}}</h3>
+        <div class="tags">
+            Phù hợp: <span>{{currentRoom.Tags}}</span>
+        </div>
+        <p class="desc">
+            {{currentRoom.Description}}
+        </p>
+        
+        <div class="amenities">
+            <amenity-item icon="fas fa-map-marker-alt" text="Trung tâm Hà Nội"></amenity-item>
+            <amenity-item icon="fas fa-shower" text="Phòng tắm riêng"></amenity-item>
+            <amenity-item icon="fas fa-bell" text="Nhà hàng"></amenity-item>
+            <!-- <amenity-item icon="fas fa-utensils" text="Ăn sáng tự chọn 220,000 VNĐ"></amenity-item> -->
+            <!-- <amenity-item icon="fas fa-swimming-pool" text="Hồ Bơi"></amenity-item> -->
+            <amenity-item icon="fas fa-coffee" text="Quán Cafe"></amenity-item>
+            <amenity-item icon="fas fa-glass-martini-alt" text="Lounge"></amenity-item>
+            <amenity-item icon="fas fa-headset" text="An ninh 24/7"></amenity-item>
+            <amenity-item icon="fas fa-wifi" text="Free Wifi tốc độ cao"></amenity-item>
+            <!-- <amenity-item icon="fas fa-dumbbell" text="Gym"></amenity-item> -->
+        </div>
+
+        <button class="choose-btn btn btn-primary btn-rounded" [routerLink]="['/room', currentRoom.Id]">Chọn phòng</button>
+    </div>
+
+    <div class="price-section">
+        <div class="price-info">
+            <div class="price-label">CHỈ TỪ</div>
+            <div class="price-amount">{{currentRoom.Price | vndCurrency}}</div>
+            <div class="price-unit">Đồng / Đêm</div>
+            <div class="price-note">Đã bao gồm thuế phí</div>
+        </div>
+        <div class="price-info">
+            <div class="price-label">CHỈ TỪ</div>
+            <div class="price-amount">1.400.000</div>
+            <div class="price-unit">Đồng / Ngày</div>
+            <div class="price-note">Đã bao gồm thuế phí</div>
+        </div>
+    </div>
+</div>

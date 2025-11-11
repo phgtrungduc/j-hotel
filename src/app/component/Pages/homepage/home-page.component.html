@@ -1,0 +1,132 @@
+<div>
+    <div class="hero-section">
+        <div class="overlay">
+            <div class="hero-content">
+                <h2>WELCOME</h2>
+                <h1>J-HOTEL</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua.</p>
+                <button class="btn btn-primary btn-rounded">Khám phá</button>
+            </div>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="number">200+</div>
+                    <div class="label">Đoàn khách</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">10,000+</div>
+                    <div class="label">Khách hàng</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">200+</div>
+                    <div class="label">Sự kiện</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body-section">
+        <div class="room-section">
+            <div class="section-heading section-heading-center">Khám phá điều mới lạ tại J Hotel</div>
+            <div class="flex space-between justify-between">
+                <div *ngFor="let room of roomList | slice:0:3">
+                    <room-card [currentRoom]="room">
+                    </room-card>
+                </div>
+            </div>
+        </div>
+        <div class="room-level-section">
+            <div class="section-heading">Hạng phòng</div>
+
+            <div class="room-content">
+                <!-- Bộ lọc -->
+                <div class="room-filters">
+                    <button 
+                        *ngFor="let roomClass of roomClasses" 
+                        class="filter" 
+                        [class.active]="activeRoomClass === roomClass.id"
+                        (click)="changeRoomClass(roomClass.id)">
+                        {{ roomClass.name }}
+                    </button>
+                </div>
+
+                <div class="w-full">
+                    <!-- Danh sách phòng -->
+                    <div class="room-list">
+                        <div class="room-card"
+                            *ngFor="let room of filteredRooms | paginate: { itemsPerPage: 4, currentPage: page, id: 'room-pagination'}">
+                            <div class="image">
+                                <img [src]="room.imageUrl" [alt]="room.name" loading="lazy">
+                                <div class="info">
+                                    <div class="name">{{ room.name }}</div>
+                                    <span class="link" href="#">Khám phá <span>↗</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <!-- <pagination-controls (pageChange)="page = $event" paginationTemplate="customTpl">
+                        </pagination-controls> -->
+
+                        <pagination-template #p="paginationApi" id="room-pagination" (pageChange)="page = $event"
+                            (pageBoundsCorrection)="page = $event" class="custom-pagination">
+
+                            <!-- Previous arrow -->
+                            <div class="arrow" [class.disabled]="p.isFirstPage()">
+                                <a *ngIf="!p.isFirstPage()" (click)="p.previous()">←</a>
+                            </div>
+
+                            <!-- Page numbers -->
+                            <div class="page-item" *ngFor="let pageItem of p.pages"
+                                [class.current]="p.getCurrent() === pageItem.value"
+                                [class.ellipsis]="pageItem.label === '...'">
+
+                                <!-- normal page -->
+                                <a *ngIf="p.getCurrent() !== pageItem.value && pageItem.label !== '...'"
+                                    (click)="p.setCurrent(pageItem.value)">
+                                    {{ pageItem.label }}
+                                </a>
+
+                                <!-- current page -->
+                                <span *ngIf="p.getCurrent() === pageItem.value && pageItem.label !== '...'">
+                                    {{ pageItem.label }}
+                                </span>
+
+                                <!-- ellipsis -->
+                                <span *ngIf="pageItem.label === '...'">…</span>
+                            </div>
+
+                            <!-- Next arrow -->
+                            <div class="arrow" [class.disabled]="p.isLastPage()">
+                                <a *ngIf="!p.isLastPage()" (click)="p.next()">→</a>
+                            </div>
+                        </pagination-template>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Stories Section -->
+    <div class="stories-section">
+        <div class="section-heading section-heading-center">Bộ sưu tập những câu chuyện tại J Hotel</div>
+        <div class="stories-grid">
+            <div class="story-column column-1">
+                <div class="story-image story-1" [style.backgroundImage]="'url(' + storiesList[0].imageUrl + ')'"></div>
+                <div class="story-image story-2" [style.backgroundImage]="'url(' + storiesList[1].imageUrl + ')'"></div>
+            </div>
+            <div class="story-column column-2">
+                <div class="story-image story-3" [style.backgroundImage]="'url(' + storiesList[2].imageUrl + ')'"></div>
+                <div class="story-image story-4" [style.backgroundImage]="'url(' + storiesList[3].imageUrl + ')'"></div>
+            </div>
+            <div class="story-column column-3">
+                <div class="story-image story-5" [style.backgroundImage]="'url(' + storiesList[4].imageUrl + ')'"></div>
+                <div class="story-image story-6" [style.backgroundImage]="'url(' + storiesList[5].imageUrl + ')'"></div>
+            </div>
+        </div>
+    </div>
+
+    <app-member-section></app-member-section>
+</div>

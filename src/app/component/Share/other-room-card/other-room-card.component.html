@@ -1,0 +1,16 @@
+<div class="room-card">
+  <div class="room-image">
+    <img [src]="imageUrl" [alt]="title" />
+  </div>
+  <div class="room-content">
+    <h4>{{ title }}</h4>
+    <p class="description">{{ description }}</p>
+    <div class="price-section">
+      <div class="price">{{ price }}</div>
+      <button class="book-btn" (click)="handleBookRoom()">
+        Đặt phòng
+        <i class="fas fa-arrow-up-right"></i>
+      </button>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,22 @@
+<header class="fixed top-0 left-0 w-full z-50 transition-colors duration-300" [ngClass]="{ scrolled: isScrolled }">
+  <div class="flex justify-between items-center px-10 py-4 header-container">
+    <div class="logo font-bold leading-tight">
+      <img src="assets/images/logo.png" alt="" style="width: 60px;">
+    </div>
+
+    <nav>
+      <ul class="flex gap-6 menu">
+        <li *ngFor="let item of menuItems">
+          <a href="javascript:void(0);" [ngClass]="{ 'active': item.label === activeItemLabel }"
+            (click)="setActiveItem(item.link); $event.preventDefault()">
+            {{ item.label }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="flex gap-4 items-center actions">
+      <button class="text-2xl">☰</button>
+    </div>
+  </div>
+</header>

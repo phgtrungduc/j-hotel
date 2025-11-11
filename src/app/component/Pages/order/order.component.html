@@ -1,0 +1,222 @@
+<!-- <div class="room-page">
+  <div class="search-bar">
+    <div class="field">
+      <label>Nhận phòng</label>
+      <input type="date" [(ngModel)]="checkIn" />
+    </div>
+    <div class="field">
+      <label>Trả phòng</label>
+      <input type="date" [(ngModel)]="checkOut" />
+    </div>
+    <div class="field">
+      <label>Khách</label>
+      <input type="text" placeholder="2 Người lớn, 0 Trẻ em" />
+    </div>
+    <button class="search-btn">Tìm phòng</button>
+  </div>
+
+  <div class="content">
+    <div class="filters">
+      <div class="filter-card">
+        <h4>Giá phòng</h4>
+        <input type="range" min="400000" max="5400000" step="100000" [(ngModel)]="price" />
+        <div class="price">{{ price | number }} VND</div>
+        <button class="reset-btn">Làm mới</button>
+      </div>
+
+      <div class="filter-card">
+        <h4>Hạng phòng</h4>
+        <select [(ngModel)]="category">
+          <option value="">Tất cả các phòng</option>
+          <option value="a">Hạng A</option>
+          <option value="b">Hạng B</option>
+          <option value="thuong">Hạng thường</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="room-list">
+      <div class="room-card" *ngFor="let room of rooms">
+        <img [src]="room.image" alt="room" />
+        <div class="info">
+          <h3>{{ room.name }}</h3>
+          <div class="price">{{ room.price | number }} VNĐ/đêm</div>
+          <div class="tags">{{ room.tags }}</div>
+          <p class="desc">{{ room.description }}</p>
+          <button class="select-btn">Chọn phòng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="search-bar">
+  <div class="search-item">
+    <span class="label">Nhận phòng</span>
+    <span class="value">06/06/2024</span>
+  </div>
+  <div class="search-item">
+    <span class="label">Trả phòng</span>
+    <span class="value">07/06/2024</span>
+  </div>
+  <div class="search-item">
+    <span class="label">Khách</span>
+    <span class="value">2 Người lớn, 0 Trẻ em, 0 Em bé</span>
+  </div>
+  <button class="search-button">
+    <span class="icon">🔍</span>
+    Tìm phòng
+  </button>
+</div>
+
+
+<div class="price-filter">
+  <div class="header">
+    <div class="title">Giá phòng</div>
+    <mat-icon>expand_more</mat-icon>
+  </div>
+  <div class="subtitle">1 phòng, 1 đêm</div>
+
+  <div class="slider-container">
+    <mat-slider
+      thumbLabel
+      [min]="min"
+      [max]="max"
+      [step]="100000"
+      [(ngModel)]="value"
+    ></mat-slider>
+  </div>
+
+  <div class="price-range">
+    <div class="min-price">{{ min | number }} VND</div>
+    <span>–</span>
+    <div class="max-price">{{ max | number }} VND</div>
+  </div>
+
+  <button class="reset-button">
+    <mat-icon>refresh</mat-icon>
+    Làm mới
+  </button>
+</div>
+
+
+<div class="room-card">
+  <div class="image-wrapper">
+    <img src="assets/img/phong-demo.jpg" alt="Hotel room" />
+  </div>
+
+  <div class="info">
+    <h3 class="title">J VILLAGE PREMIER HOTEL THI SÁCH</h3>
+    <div class="price">1.850.000 VNĐ/đêm</div>
+    <div class="tags">
+      Phù hợp: <span>Nghỉ dưỡng, Công tác ngắn ngày, Staycation</span>
+    </div>
+    <p class="desc">
+      Trải nghiệm một hơi thở Á Đông độc đáo giữa nhịp sống đa sắc màu tại Phố
+      Nhất, Quận 1. M Village Premier Hotel Thi Sách chào đón bạn với 79 căn
+      phòng hiện đại, ngập tràn ánh sáng tự nhiên và tầm nhìn xanh mát từ đường
+      Thi Sách—nơi giao thoa giữa nét...
+    </p>
+
+    <button class="choose-btn">Chọn phòng</button>
+  </div>
+</div>
+ -->
+
+
+<div class="room-order">
+  <!-- <div class="search-bar mr-100 ml-100">
+    <div class="search-item">
+      <span class="label">Nhận phòng</span>
+      <span class="value">06/06/2024</span>
+    </div>
+    <div class="search-item">
+      <span class="label">Trả phòng</span>
+      <span class="value">07/06/2024</span>
+    </div>
+    <div class="search-item">
+      <span class="label">Khách</span>
+      <span class="value">2 Người lớn, 0 Trẻ em, 0 Em bé</span>
+    </div>
+    <button class="search-button">
+      <span class="icon"><mat-icon>search</mat-icon></span>
+      Tìm phòng
+    </button>
+  </div> -->
+  <div class="body-section">
+    <div class="wraper flex gap-3">
+      <div class="room-list flex flex-col flex-3 gap-4">
+        <div *ngFor="let room of rooms | paginate: { itemsPerPage: 5, currentPage: page, id: 'room-pagination'}">
+          <room-order-card [currentRoom]="room"></room-order-card>
+        </div>
+        <div class="flex justify-center">
+          <!-- <pagination-controls (pageChange)="page = $event" paginationTemplate="customTpl">
+                        </pagination-controls> -->
+
+          <pagination-template #p="paginationApi" id="room-pagination" (pageChange)="page = $event"
+            (pageBoundsCorrection)="page = $event" class="custom-pagination">
+
+            <!-- Previous arrow -->
+            <div class="arrow" [class.disabled]="p.isFirstPage()">
+              <a *ngIf="!p.isFirstPage()" (click)="p.previous()">←</a>
+            </div>
+
+            <!-- Page numbers -->
+            <div class="page-item" *ngFor="let pageItem of p.pages" [class.current]="p.getCurrent() === pageItem.value"
+              [class.ellipsis]="pageItem.label === '...'">
+
+              <!-- normal page -->
+              <a *ngIf="p.getCurrent() !== pageItem.value && pageItem.label !== '...'"
+                (click)="p.setCurrent(pageItem.value)">
+                {{ pageItem.label }}
+              </a>
+
+              <!-- current page -->
+              <span *ngIf="p.getCurrent() === pageItem.value && pageItem.label !== '...'">
+                {{ pageItem.label }}
+              </span>
+
+              <!-- ellipsis -->
+              <span *ngIf="pageItem.label === '...'">…</span>
+            </div>
+
+            <!-- Next arrow -->
+            <div class="arrow" [class.disabled]="p.isLastPage()">
+              <a *ngIf="!p.isLastPage()" (click)="p.next()">→</a>
+            </div>
+          </pagination-template>
+
+        </div>
+      </div>
+      <div class="filter-list flex-1">
+        <div class="price-filter w-100">
+          <div class="header">
+            <div class="title">Giá phòng</div>
+            <mat-icon>expand_more</mat-icon>
+          </div>
+          <div class="subtitle">1 phòng, 1 đêm</div>
+
+          <div class="slider-container">
+
+          </div>
+
+          <div class="price-range">
+            <div class="min-price">{{ min }} VND</div>
+            <span>–</span>
+            <div class="max-price">{{ max }} VND</div>
+          </div>
+          <mat-slider thumbLabel [min]="min" [max]="max" step="100000" class="w-100">
+            <input matSliderThumb value="value">
+          </mat-slider>
+
+          <button class="reset-button">
+            <mat-icon>refresh</mat-icon>
+            Làm mới
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

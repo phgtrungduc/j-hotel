@@ -1,0 +1,166 @@
+<div class="hotel-container mt-[100px]">
+  <!-- <div class="image-gallery">
+    <div class="image-large">
+      <img src="image1.jpg" alt="Main Image" />
+    </div>
+    <div class="image-small-group">
+      <img src="assets/images/room-detail/1.jpg" alt="Image 2" />
+      <img src="assets/images/room-detail/2.jpg" alt="Image 3" />
+      <img src="assets/images/room-detail/3.jpg" alt="Image 4" />
+      <img src="assets/images/room-detail/4.jpg" alt="Image 5" />
+      <img src="assets/images/room-detail/5.jpg" alt="Image 6" />
+    </div>
+  </div> -->
+
+
+  <!-- Grid hiển thị ảnh linh hoạt -->
+  <div class="image-container" [ngClass]="'images-' + roomImages.length" *ngIf="roomImages.length > 0">
+    
+    <!-- Trường hợp 1 ảnh -->
+    <div *ngIf="roomImages.length === 1" class="single-image">
+      <img [src]="roomImages[0]" [alt]="currentRoom?.Name" />
+    </div>
+    
+    <!-- Trường hợp 2 ảnh -->
+    <div *ngIf="roomImages.length === 2" class="two-images">
+      <div class="image-half">
+        <img [src]="roomImages[0]" [alt]="currentRoom?.Name + ' - Ảnh 1'" />
+      </div>
+      <div class="image-half">
+        <img [src]="roomImages[1]" [alt]="currentRoom?.Name + ' - Ảnh 2'" />
+      </div>
+    </div>
+    
+    <!-- Trường hợp 3 ảnh -->
+    <div *ngIf="roomImages.length === 3" class="three-images">
+      <div class="left-image">
+        <img [src]="roomImages[0]" [alt]="currentRoom?.Name + ' - Ảnh chính'" />
+      </div>
+      <div class="right-images">
+        <div class="small-image">
+          <img [src]="roomImages[1]" [alt]="currentRoom?.Name + ' - Ảnh 2'" />
+        </div>
+        <div class="small-image">
+          <img [src]="roomImages[2]" [alt]="currentRoom?.Name + ' - Ảnh 3'" />
+        </div>
+      </div>
+    </div>
+    
+    <!-- Trường hợp 4 ảnh -->
+    <div *ngIf="roomImages.length === 4" class="four-images">
+      <div class="left-image">
+        <img [src]="roomImages[0]" [alt]="currentRoom?.Name + ' - Ảnh chính'" />
+      </div>
+      <div class="right-grid">
+        <div class="small-image">
+          <img [src]="roomImages[1]" [alt]="currentRoom?.Name + ' - Ảnh 2'" />
+        </div>
+        <div class="small-image">
+          <img [src]="roomImages[2]" [alt]="currentRoom?.Name + ' - Ảnh 3'" />
+        </div>
+        <div class="small-image">
+          <img [src]="roomImages[3]" [alt]="currentRoom?.Name + ' - Ảnh 4'" />
+        </div>
+      </div>
+    </div>
+    
+    <!-- Trường hợp 5+ ảnh (như thiết kế cũ) -->
+    <div *ngIf="roomImages.length >= 5" class="five-plus-images">
+      <div class="left-image">
+        <img [src]="roomImages[0]" [alt]="currentRoom?.Name + ' - Ảnh chính'" />
+      </div>
+      <div class="right-grid">
+        <div class="small-image">
+          <img [src]="roomImages[1]" [alt]="currentRoom?.Name + ' - Ảnh 2'" />
+        </div>
+        <div class="small-image">
+          <img [src]="roomImages[2]" [alt]="currentRoom?.Name + ' - Ảnh 3'" />
+        </div>
+        <div class="small-image">
+          <img [src]="roomImages[3]" [alt]="currentRoom?.Name + ' - Ảnh 4'" />
+        </div>
+        <div class="image-with-overlay small-image">
+          <img [src]="roomImages[4]" [alt]="currentRoom?.Name + ' - Ảnh 5'" />
+          <div class="overlay" *ngIf="roomImages.length > 5">{{roomImages.length - 4}}+</div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Fallback nếu không có ảnh -->
+  <div *ngIf="roomImages.length === 0" class="no-images">
+    <img src="assets/images/default-room.png" alt="Ảnh mặc định" />
+  </div>
+
+
+  <div class="hotel-info">
+    <div class="hotel-header">
+      <h2>{{ currentRoom?.Name || 'J Village Premier Hotel Thi Sách' }}</h2>
+      <button class="book-room-btn" (click)="onBookRoom()">
+        <span>Đặt phòng</span>
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+    <p>
+      {{ currentRoom?.Description || 'Trải nghiệm một hơi thở Á Đông độc đáo giữa nhịp sống đa sắc màu tại Phố Nhật, Quận 1. M Village Premier Hotel Thi Sách...' }}
+    </p>
+
+    <div class="suitability-box">
+      <h4>Phù hợp</h4>
+      <ul>
+        <li>✓ Nghỉ dưỡng</li>
+        <li>✓ Công tác ngắn ngày</li>
+        <li>✓ Công tác dài hạn</li>
+        <li>✓ Lưu trú dài hạn</li>
+        <li>✓ Staycation</li>
+        <li>✓ Workcation</li>
+      </ul>
+    </div>
+
+    <div class="facilities">
+      <h4>Tiện nghi</h4>
+      <div class="facility-grid">
+        <amenity-item icon="fas fa-utensils" text="Buffet ăn sáng"></amenity-item>
+        <amenity-item icon="fas fa-glass-martini-alt" text="Lounge"></amenity-item>
+        <amenity-item icon="fas fa-wifi" text="Free Wifi tốc độ cao"></amenity-item>
+        <amenity-item icon="fas fa-shower" text="Phòng tắm riêng"></amenity-item>
+        <amenity-item icon="fas fa-swimming-pool" text="Hồ Bơi"></amenity-item>
+        <amenity-item icon="fas fa-headset" text="An ninh 24/7"></amenity-item>
+        <amenity-item icon="fas fa-dumbbell" text="Gym"></amenity-item>
+      </div>
+    </div>
+
+    <div class="other-rooms">
+      <h3>Phòng khác</h3>
+      <div class="room-cards">
+        <other-room-card 
+          imageUrl="assets/images/room-detail/1.jpg"
+          title="Phòng Superior bathtub no window"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+          price="1.850.000 VNĐ/đêm"
+          (onBookRoom)="onOtherRoomBook()">
+        </other-room-card>
+
+        <other-room-card 
+          imageUrl="assets/images/room-detail/2.jpg"
+          title="Phòng Deluxe with window"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+          price="2.100.000 VNĐ/đêm"
+          (onBookRoom)="onOtherRoomBook()">
+        </other-room-card>
+
+        <other-room-card 
+          imageUrl="assets/images/room-detail/3.jpg"
+          title="Phòng Deluxe Twin with bathtub"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+          price="2.350.000 VNĐ/đêm"
+          (onBookRoom)="onOtherRoomBook()">
+        </other-room-card>
+      </div>
+      <div class="view-more">
+        <button class="view-more-btn">Xem thêm</button>
+      </div>
+    </div>
+  </div>
+</div>
