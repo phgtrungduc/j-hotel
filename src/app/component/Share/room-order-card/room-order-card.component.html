@@ -30,16 +30,16 @@
 
     <div class="price-section">
         <div class="price-info">
-            <div class="price-label">CHỈ TỪ</div>
-            <div class="price-amount">{{currentRoom.Price | vndCurrency}}</div>
-            <div class="price-unit">Đồng / Đêm</div>
-            <div class="price-note">Đã bao gồm thuế phí</div>
+            <div class="price-label">Nghỉ giờ</div>
+            <div class="price-amount">{{ hourlyPrice | vndCurrency }}</div>
+            <div class="price-unit">VNĐ / 2 giờ đầu</div>
+            <div class="price-note">Chưa gồm VAT 10%</div>
         </div>
         <div class="price-info">
-            <div class="price-label">CHỈ TỪ</div>
-            <div class="price-amount">1.400.000</div>
-            <div class="price-unit">Đồng / Ngày</div>
-            <div class="price-note">Đã bao gồm thuế phí</div>
+            <div class="price-label">Nghỉ đêm</div>
+            <div class="price-amount">{{ overnightPrice | vndCurrency }}</div>
+            <div class="price-unit">VNĐ (22:00 – 12:00)</div>
+            <div class="price-note">Chưa gồm VAT 10%</div>
         </div>
     </div>
 </div>
