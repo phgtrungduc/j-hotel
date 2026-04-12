@@ -1,0 +1,18 @@
+{
+  "themeRootOldName": "Chủ đề",
+  "themeRootNewName": "ECLASS",
+  "basicRootOldName": "Cơ bản",
+  "basicRootNewName": "BasicRoom",
+  "premiumRootOldName": "Premium",
+  "premiumRootNewName": "PremiumRoom",
+  "themeSubfolders": [
+    { "from": "203 - Chuyến tàu định mệnh", "to": "P203-ChuyenTauDinhMenh" },
+    { "from": "302 - Kimochi", "to": "P302-Kimochi" },
+    { "from": "403 - Morocco", "to": "P403-Morocco" },
+    { "from": "503 - Bird Box", "to": "P503-BirdBox" },
+    { "from": "601 - Golden Inox", "to": "P601-GoldenInox" },
+    { "from": "603 - Play Boy", "to": "P603-PlayBoy" },
+    { "from": "701 - 50 Sắc Thái", "to": "P701-50ST" },
+    { "from": "703 - Mumbai", "to": "P703-Mumbai" }
+  ]
+}

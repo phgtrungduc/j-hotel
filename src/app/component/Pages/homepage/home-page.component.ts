@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../common/base.component';
 import { HttpClient } from '@angular/common/http';
 import { LoginApiService } from '../../../core/api-services/login-api.service';
@@ -11,6 +11,16 @@ import { MemberSectionComponent } from '../../Share/member-section/member-sectio
 import { Room } from '../../../model/room.model';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { takeUntil } from 'rxjs';
+import { getAllRooms } from '../../../store/app-state';
+
+interface RoomClassTab {
+  id: string;
+  name: string;
+  description?: string;
+  rooms: { name: string; imageUrl: string }[];
+}
+
 @Component({
   selector: 'home-page',
   templateUrl: './home-page.component.html',
@@ -18,55 +28,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [Footer, Header, RoomCardComponent, MemberSectionComponent, CommonModule, NgxPaginationModule
   ]
 })
-export class HomePage extends BaseComponent {
+export class HomePage extends BaseComponent implements OnInit {
 
-  // Room classes data
-  roomClasses = [
-    {
-      id: 'all',
-      name: 'Tất cả các phòng',
-      rooms: []
-    },
-    {
-      id: 'deluxe',
-      name: 'Deluxe Room',
-      description: 'Phòng Deluxe sang trọng',
-      rooms: [
-        { name: 'Deluxe P 301', imageUrl: 'assets/images/room-class/DeluxeRoom/P301/R4_00807.jpg' },
-        { name: 'Deluxe P 401', imageUrl: 'assets/images/room-class/DeluxeRoom/P401/R4_00544.jpg' },
-        { name: 'Deluxe P 501', imageUrl: 'assets/images/room-class/DeluxeRoom/P501/R4_00378.jpg' }
-      ]
-    },
-    // {
-    //   id: 'eclass',
-    //   name: 'E Class',
-    //   description: 'Phòng E Class hiện đại',
-    //   rooms: [
-    //     { name: 'Black Pink', imageUrl: 'assets/images/room-class/ECLASS/BlackPink/R4_00195.jpg' },
-    //     { name: 'Pink Flower', imageUrl: 'assets/images/room-class/ECLASS/PinkFlower/R4_00311.jpg' },
-    //     { name: 'Play Boy', imageUrl: 'assets/images/room-class/ECLASS/PlayBoy/R4_00252.jpg' }
-    //   ]
-    // },
-    // {
-    //   id: 'sclass',
-    //   name: 'S Class',
-    //   description: 'Phòng S Class đẳng cấp',
-    //   rooms: [
-    //     { name: 'S Class 50 ST - 1', imageUrl: 'assets/images/room-class/SCLASS/50ST/R4_00014.jpg' },
-    //     { name: 'S Class 50 ST - 2', imageUrl: 'assets/images/room-class/SCLASS/50ST/R4_00080.jpg' },
-    //     { name: 'S Class 50 ST - 3', imageUrl: 'assets/images/room-class/SCLASS/50ST/R4_00106.jpg' }
-    //   ]
-    // },
-    {
-      id: 'superior',
-      name: 'Superior Room',
-      description: 'Phòng Superior tiện nghi',
-      rooms: [
-        { name: 'Superior P 202', imageUrl: 'assets/images/room-class/SuperiorRoom/P202/R4_00443.jpg' },
-        { name: 'Superior P 302', imageUrl: 'assets/images/room-class/SuperiorRoom/P302/R4_00708.jpg' },
-        { name: 'Superior P 402', imageUrl: 'assets/images/room-class/SuperiorRoom/P402/R4_00598.jpg' }
-      ]
-    }
+  roomClasses: RoomClassTab[] = [
+    { id: 'all', name: 'Tất cả các phòng', rooms: [] },
   ];
 
   activeRoomClass = 'all';
@@ -161,45 +126,12 @@ export class HomePage extends BaseComponent {
   //paging 
   page = 1;
 
-  // Stories section data
-  storiesList = [
-    {
-      id: 1,
-      imageUrl: 'assets/images/stories/1.jpg',
-      title: 'Deluxe Room P301',
-      description: 'Phòng Deluxe sang trọng với thiết kế hiện đại'
-    },
-    {
-      id: 2,
-      imageUrl: 'assets/images/room-class/DeluxeRoom/P301/R4_00834.jpg',
-      title: 'Deluxe Room View',
-      description: 'Không gian rộng rãi và thoải mái'
-    },
-    {
-      id: 3,
-      imageUrl: 'assets/images/stories/2.jpg',
-      title: 'E Class - Black Pink',
-      description: 'Phong cách hiện đại và cá tính'
-    },
-    {
-      id: 4,
-      imageUrl: 'assets/images/stories/3.jpg',
-      title: 'E Class - Pink Flower',
-      description: 'Thiết kế lãng mạn và tinh tế'
-    },
-    {
-      id: 5,
-      imageUrl: 'assets/images/room-class/SuperiorRoom/P202/R4_00443.jpg',
-      title: 'S Class Premium',
-      description: 'Đẳng cấp và sang trọng bậc nhất'
-    },
-    {
-      id: 6,
-      imageUrl: 'assets/images/stories/4.jpg',
-      title: 'Superior Room',
-      description: 'Tiện nghi đầy đủ cho nghỉ dưỡng'
-    }
-  ];
+  storiesList: {
+    id: number;
+    imageUrl: string;
+    title: string;
+    description: string;
+  }[] = [];
 
   constructor(private httpClient: HttpClient,
     private loginService : LoginApiService,
@@ -207,6 +139,105 @@ export class HomePage extends BaseComponent {
     private router: Router
   ){
     super();
+  }
+
+  ngOnInit (): void {
+    this.store
+      .select(getAllRooms)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((rooms) => {
+        this.roomClasses = this.buildRoomClassTabs(rooms);
+        this.storiesList = this.buildStoriesList(rooms);
+      });
+  }
+
+  private buildRoomClassTabs (rooms: Room[]): RoomClassTab[] {
+    const hotel = rooms.filter((r) => r.RoomClass && r.SubFolder && r.ImageUrl);
+    const basic = hotel.filter((r) => r.RoomClass === 'BasicRoom');
+    const premium = hotel.filter((r) => r.RoomClass === 'PremiumRoom');
+    const eclass = hotel.filter((r) => r.RoomClass === 'ECLASS');
+
+    const toShowcase = (list: Room[]) =>
+      list.map((r) => ({
+        name: r.Name,
+        imageUrl: r.ImageUrl ?? '',
+      }));
+
+    return [
+      { id: 'all', name: 'Tất cả các phòng', rooms: [] },
+      {
+        id: 'basic',
+        name: 'Cơ bản',
+        description: 'Hạng phòng Cơ bản (BasicRoom)',
+        rooms: toShowcase(basic),
+      },
+      {
+        id: 'premium',
+        name: 'Premium',
+        description: 'Hạng phòng Premium',
+        rooms: toShowcase(premium),
+      },
+      {
+        id: 'eclass',
+        name: 'Chủ đề',
+        description: 'Phòng chủ đề (ECLASS)',
+        rooms: toShowcase(eclass),
+      },
+    ];
+  }
+
+  private buildStoriesList (rooms: Room[]): {
+    id: number;
+    imageUrl: string;
+    title: string;
+    description: string;
+  }[] {
+    const pick = (id: string) => rooms.find((r) => r.Id === id);
+
+    const basic301 = pick('BasicRoom-301');
+    const premium202 = pick('PremiumRoom-202');
+    const playBoy = pick('ECLASS-P603-PlayBoy');
+    const kimochi = pick('ECLASS-P302-Kimochi');
+    const fifty = pick('ECLASS-P701-50ST');
+
+    return [
+      {
+        id: 1,
+        imageUrl: 'assets/images/stories/1.jpg',
+        title: 'J Hotel',
+        description: 'Trải nghiệm lưu trú đa phong cách',
+      },
+      {
+        id: 2,
+        imageUrl: basic301?.ImageUrl ?? 'assets/images/stories/1.jpg',
+        title: 'Hạng Cơ bản',
+        description: 'Không gian thoải mái, đủ tiện nghi',
+      },
+      {
+        id: 3,
+        imageUrl: playBoy?.ImageUrl ?? 'assets/images/stories/2.jpg',
+        title: 'Chủ đề — PlayBoy',
+        description: 'Phong cách hiện đại và cá tính',
+      },
+      {
+        id: 4,
+        imageUrl: kimochi?.ImageUrl ?? 'assets/images/stories/3.jpg',
+        title: 'Chủ đề — Kimochi',
+        description: 'Thiết kế tinh tế',
+      },
+      {
+        id: 5,
+        imageUrl: fifty?.ImageUrl ?? 'assets/images/stories/4.jpg',
+        title: 'Chủ đề — 50 Sắc Thái',
+        description: 'Không gian sang trọng',
+      },
+      {
+        id: 6,
+        imageUrl: premium202?.ImageUrl ?? 'assets/images/stories/4.jpg',
+        title: 'Hạng Premium',
+        description: 'Nâng cấp trải nghiệm nghỉ dưỡng',
+      },
+    ];
   }
 
   changeRoomClass(classId: string): void {

@@ -1,24 +1,24 @@
-# Hướng dẫn tối ưu hóa ảnh cho dự án J-Village
+# Hướng dẫn tối ưu hóa ảnh cho dự án j-hotel
 
 ## Tổng quan
 
-Hướng dẫn này mô tả quy trình chuẩn hóa tên file/folder và tối ưu hóa dung lượng ảnh cho website J-Village. Quy trình này đã giúp giảm dung lượng ảnh từ **361.71 MB xuống 2.24 MB** (giảm 87.8%), cải thiện đáng kể tốc độ tải trang.
+Hướng dẫn này mô tả quy trình chuẩn hóa tên file/folder và tối ưu hóa dung lượng ảnh cho website j-hotel. Quy trình này đã giúp giảm dung lượng ảnh từ **361.71 MB xuống 2.24 MB** (giảm 87.8%), cải thiện đáng kể tốc độ tải trang.
 
-## Cấu trúc thư mục
+## Cấu trúc thư mục (theo nguồn thực tế)
 
 ```
-j-village/
-├── public/images/          # Ảnh được sử dụng trong dự án
-│   ├── room-class/         # Ảnh các hạng phòng (đã tối ưu)
-│   ├── room-card/          # Ảnh card phòng
-│   ├── room-detail/        # Ảnh chi tiết phòng
-│   └── stories/            # Ảnh stories section
-├── image-source/           # Nguồn ảnh gốc (không được build vào dự án)
-│   ├── DeluxeRoom/         # 15 ảnh - Deluxe Room
-│   ├── ECLASS/             # 15 ảnh - E Class
-│   ├── SCLASS/             # 5 ảnh - S Class
-│   └── SuperiorRoom/       # 42 ảnh - Superior Room
+j-hotel/
+├── src/assets/images/room-class/   # Ảnh phòng đã tối ưu (Angular assets)
+│   └── manifest.json               # Sinh tự động khi chạy script đồng bộ
+├── image-source/                   # Nguồn gốc (không build); 3 hạng mẫu:
+│   ├── BasicRoom/                  # Cơ bản — mỗi thư mục con (301, 401…) = một phòng
+│   ├── PremiumRoom/                # Premium — tương tự (202, 303…)
+│   └── ECLASS/                     # Chủ đề — mỗi thư mục con = một theme (vd. P603-PlayBoy)
 ```
+
+**Đồng bộ một lệnh:** từ thư mục gốc `j-hotel`, chạy `powershell -ExecutionPolicy Bypass -File scripts/sync-room-images.ps1`. Script quét toàn bộ `image-source` (cấp 1 = hạng, cấp 2 = phòng), xóa sạch `src/assets/images/room-class` rồi ghi lại ảnh JPEG đã resize (1920px, chất lượng 60%) với tên `R4_00001.jpg`… Thư mục không có file JPEG/HEIC (chỉ HEIC) sẽ bị bỏ qua.
+
+Các ví dụ bên dưới (Deluxe Room, đường dẫn `public/images`…) là quy trình thủ công cũ; có thể tham khảo lệnh rename/nén file, nhưng **nguồn chuẩn cho build hiện tại là `image-source` + script trên**.
 
 ## Quy trình tối ưu hóa
 
@@ -26,7 +26,7 @@ j-village/
 
 ```powershell
 # Di chuyển đến thư mục chứa ảnh
-cd "d:\PERSONAL\j-village\image-source"
+cd "d:\PERSONAL\j-hotel\image-source"
 
 # Đổi tên các thư mục chính (loại bỏ dấu cách)
 Rename-Item "Deluxe Room" "DeluxeRoom"
@@ -48,7 +48,7 @@ Chỉ giữ lại phần **R4_xxxxx** hoặc **R\d+_\d+**, loại bỏ các từ
 
 ```powershell
 # Lấy tất cả file JPG
-$files = Get-ChildItem -Path "d:\PERSONAL\j-village\image-source" -Recurse -Filter "*.jpg"
+$files = Get-ChildItem -Path "d:\PERSONAL\j-hotel\image-source" -Recurse -Filter "*.jpg"
 
 # Đổi tên từng file
 foreach ($file in $files) {
@@ -78,7 +78,7 @@ Sử dụng **System.Drawing** (.NET) để nén ảnh với các thông số:
 Add-Type -AssemblyName System.Drawing
 
 # Lấy tất cả file ảnh
-$files = Get-ChildItem -Path "d:\PERSONAL\j-village\image-source" -Recurse -Filter "*.jpg"
+$files = Get-ChildItem -Path "d:\PERSONAL\j-hotel\image-source" -Recurse -Filter "*.jpg"
 $total = $files.Count
 $current = 0
 
@@ -145,7 +145,7 @@ Write-Host "`nHoàn tất tối ưu hóa!" -ForegroundColor Green
 
 ```powershell
 # Xem cấu trúc thư mục
-$baseDir = "d:\PERSONAL\j-village\image-source"
+$baseDir = "d:\PERSONAL\j-hotel\image-source"
 Get-ChildItem $baseDir -Directory | ForEach-Object {
     Write-Host "$($_.Name)/"
     Get-ChildItem $_.FullName -Directory | ForEach-Object {
@@ -212,7 +212,7 @@ Write-Host "Trung bình: $([math]::Round($totalSize/$files.Count, 2)) MB/file"
 
 ## Lưu ý quan trọng
 
-1. **Folder `image-source`** nằm ở root của j-village, **KHÔNG** được build vào production
+1. **Folder `image-source`** nằm ở root của j-hotel, **KHÔNG** được build vào production
 2. Chỉ copy ảnh cần dùng từ `image-source` sang `public/images/room-class`
 3. Luôn backup ảnh gốc trước khi nén (nếu cần chất lượng cao sau này)
 4. Chất lượng 60% phù hợp cho web, nếu cần chất lượng cao hơn dùng 70-80%
@@ -226,5 +226,5 @@ Write-Host "Trung bình: $([math]::Round($totalSize/$files.Count, 2)) MB/file"
 
 ## Tác giả
 
-Được tối ưu hóa cho dự án J-Village Hotel Booking
+Được tối ưu hóa cho dự án j-hotel Hotel Booking
 Ngày cập nhật: 17/10/2025
