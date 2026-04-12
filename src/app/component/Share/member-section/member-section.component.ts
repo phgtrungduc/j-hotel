@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class MemberSectionComponent {
   @Input() subtitle: string = 'Trở thành';
-  @Input() title: string = 'HỘI VIÊN J VILLAGE MORE';
+  @Input() title: string = 'HỘI VIÊN JACAYL HOTEL MORE';
   @Input() description: string = 'để mở khóa nhiều đặc quyền.';
   @Input() primaryButtonText: string = 'Đăng ký hội viên';
   @Input() secondaryButtonText: string = 'Đặt phòng';

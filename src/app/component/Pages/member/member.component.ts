@@ -149,7 +149,7 @@ export class MemberComponent extends BaseComponent {
     {
       id: '1',
       category: 'DOANH NGHIỆP',
-      quote: 'Dù thường phải đặt phòng gấp do lịch trình dự án, J Village với <span class="highlight">ưu đãi giá tốt</span>, <span class="highlight">xác nhận nhanh chóng</span>, <span class="highlight">hỗ trợ tận tình</span> và <span class="highlight">luôn sẵn phòng</span> vẫn giúp chuyến công tác của chúng tôi trơn tru hơn bao giờ hết.',
+      quote: 'Dù thường phải đặt phòng gấp do lịch trình dự án, Jacayl Hotel với <span class="highlight">ưu đãi giá tốt</span>, <span class="highlight">xác nhận nhanh chóng</span>, <span class="highlight">hỗ trợ tận tình</span> và <span class="highlight">luôn sẵn phòng</span> vẫn giúp chuyến công tác của chúng tôi trơn tru hơn bao giờ hết.',
       attribution: {
         title: 'Giám đốc nhân sự',
         company: 'Global Tech Firm'
@@ -159,7 +159,7 @@ export class MemberComponent extends BaseComponent {
     {
       id: '2',
       category: 'ĐƠN VỊ LỮ HÀNH',
-      quote: 'J Village giúp chúng tôi có <span class="highlight">giá và ưu đãi hợp lý</span>, luôn <span class="highlight">chủ động</span>, <span class="highlight">phản ứng nhanh</span> với mọi thay đổi.',
+      quote: 'Jacayl Hotel giúp chúng tôi có <span class="highlight">giá và ưu đãi hợp lý</span>, luôn <span class="highlight">chủ động</span>, <span class="highlight">phản ứng nhanh</span> với mọi thay đổi.',
       attribution: {
         title: 'Chuyên viên tư vấn',
         company: 'Corporate Travel Agency'
@@ -169,7 +169,7 @@ export class MemberComponent extends BaseComponent {
     {
       id: '3',
       category: 'KHÁCH CÁ NHÂN',
-      quote: 'Trải nghiệm tuyệt vời với J Village. <span class="highlight">Dịch vụ chất lượng</span>, <span class="highlight">giá cả phải chăng</span> và <span class="highlight">đội ngũ nhân viên thân thiện</span>. Chắc chắn sẽ quay lại!',
+      quote: 'Trải nghiệm tuyệt vời với Jacayl Hotel. <span class="highlight">Dịch vụ chất lượng</span>, <span class="highlight">giá cả phải chăng</span> và <span class="highlight">đội ngũ nhân viên thân thiện</span>. Chắc chắn sẽ quay lại!',
       attribution: {
         title: 'Khách hàng thường xuyên',
         company: 'Freelance Consultant'
