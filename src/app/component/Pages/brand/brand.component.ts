@@ -45,6 +45,7 @@ export class BrandComponent extends BaseComponent {
   private buildAmenitiesFromRooms (rooms: Room[]): Record<string, Amenity> {
     const basic = rooms.filter((r) => r.RoomClass === 'BasicRoom');
     const premium = rooms.filter((r) => r.RoomClass === 'PremiumRoom');
+    const vip = rooms.filter((r) => r.RoomClass === 'VIP');
     const eclass = rooms.filter((r) => r.RoomClass === 'ECLASS');
 
     const heroImage = (list: Room[]) =>
@@ -73,6 +74,14 @@ export class BrandComponent extends BaseComponent {
           'Hạng Premium: thiết kế và tiện nghi cao cấp hơn, phù hợp staycation và công tác.',
         image: heroImage(premium),
         locations: toLocations(premium),
+      },
+      VIP: {
+        id: 'VIP',
+        title: 'V.I.P',
+        description:
+          'Hạng V.I.P: không gian riêng tư và tiện nghi dành cho trải nghiệm cao cấp nhất.',
+        image: heroImage(vip),
+        locations: toLocations(vip),
       },
       ECLASS: {
         id: 'ECLASS',

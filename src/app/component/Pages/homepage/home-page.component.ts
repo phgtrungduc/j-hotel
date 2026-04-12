@@ -155,6 +155,7 @@ export class HomePage extends BaseComponent implements OnInit {
     const hotel = rooms.filter((r) => r.RoomClass && r.SubFolder && r.ImageUrl);
     const basic = hotel.filter((r) => r.RoomClass === 'BasicRoom');
     const premium = hotel.filter((r) => r.RoomClass === 'PremiumRoom');
+    const vip = hotel.filter((r) => r.RoomClass === 'VIP');
     const eclass = hotel.filter((r) => r.RoomClass === 'ECLASS');
 
     const toShowcase = (list: Room[]) =>
@@ -178,6 +179,12 @@ export class HomePage extends BaseComponent implements OnInit {
         rooms: toShowcase(premium),
       },
       {
+        id: 'vip',
+        name: 'V.I.P',
+        description: 'Hạng phòng V.I.P',
+        rooms: toShowcase(vip),
+      },
+      {
         id: 'eclass',
         name: 'Chủ đề',
         description: 'Phòng chủ đề (ECLASS)',
@@ -196,6 +203,7 @@ export class HomePage extends BaseComponent implements OnInit {
 
     const basic301 = pick('BasicRoom-301');
     const premium202 = pick('PremiumRoom-202');
+    const vip801 = pick('VIP-801');
     const playBoy = pick('ECLASS-P603-PlayBoy');
     const kimochi = pick('ECLASS-P302-Kimochi');
     const fifty = pick('ECLASS-P701-50ST');
@@ -233,9 +241,9 @@ export class HomePage extends BaseComponent implements OnInit {
       },
       {
         id: 6,
-        imageUrl: premium202?.ImageUrl ?? 'assets/images/stories/4.jpg',
-        title: 'Hạng Premium',
-        description: 'Nâng cấp trải nghiệm nghỉ dưỡng',
+        imageUrl: vip801?.ImageUrl ?? premium202?.ImageUrl ?? 'assets/images/stories/4.jpg',
+        title: 'Hạng V.I.P',
+        description: 'Không gian riêng tư và tiện nghi cao cấp',
       },
     ];
   }

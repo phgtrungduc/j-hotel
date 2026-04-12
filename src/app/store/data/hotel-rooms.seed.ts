@@ -45,7 +45,7 @@ function seedRoom (params: {
 }
 
 /**
- * Phòng khớp 3 hạng trong image-source: BasicRoom, PremiumRoom, ECLASS (và thư mục con đúng tên).
+ * Phòng khớp hạng trong image-source: BasicRoom, PremiumRoom, VIP, ECLASS (thư mục con đúng tên).
  */
 export function createInitialHotelRooms (): Room[] {
   return [
@@ -138,6 +138,17 @@ export function createInitialHotelRooms (): Room[] {
       subFolder: '702',
       imageCount: 4,
       price: 2400000,
+    }),
+    seedRoom({
+      id: 'VIP-801',
+      name: 'V.I.P — phòng 801',
+      description:
+        'Hạng V.I.P: không gian riêng tư cao cấp, tiện nghi dành cho trải nghiệm đỉnh cao.',
+      roomClass: 'VIP',
+      subFolder: '801',
+      imageCount: 9,
+      tags: 'Nghỉ dưỡng cao cấp, Staycation, V.I.P',
+      price: 3500000,
     }),
     seedRoom({
       id: 'ECLASS-P203-ChuyenTauDinhMenh',

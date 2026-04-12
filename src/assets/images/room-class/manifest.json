@@ -181,5 +181,21 @@
                        "R4_00003.jpg",
                        "R4_00004.jpg"
                    ]
+    },
+    {
+        "roomClass":  "VIP",
+        "subFolder":  "801",
+        "sourceRelative":  "VIP/801",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg",
+                       "R4_00005.jpg",
+                       "R4_00006.jpg",
+                       "R4_00007.jpg",
+                       "R4_00008.jpg",
+                       "R4_00009.jpg"
+                   ]
     }
 ]
