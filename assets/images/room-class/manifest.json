@@ -1,0 +1,185 @@
+﻿[
+    {
+        "roomClass":  "BasicRoom",
+        "subFolder":  "301",
+        "sourceRelative":  "BasicRoom/301",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "BasicRoom",
+        "subFolder":  "401",
+        "sourceRelative":  "BasicRoom/401",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "BasicRoom",
+        "subFolder":  "501",
+        "sourceRelative":  "BasicRoom/501",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "ECLASS",
+        "subFolder":  "P203-ChuyenTauDinhMenh",
+        "sourceRelative":  "ECLASS/P203-ChuyenTauDinhMenh",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "ECLASS",
+        "subFolder":  "P302-Kimochi",
+        "sourceRelative":  "ECLASS/P302-Kimochi",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "ECLASS",
+        "subFolder":  "P403-Morocco",
+        "sourceRelative":  "ECLASS/P403-Morocco",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg",
+                       "R4_00005.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "ECLASS",
+        "subFolder":  "P503-BirdBox",
+        "sourceRelative":  "ECLASS/P503-BirdBox",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "ECLASS",
+        "subFolder":  "P601-GoldenInox",
+        "sourceRelative":  "ECLASS/P601-GoldenInox",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "ECLASS",
+        "subFolder":  "P603-PlayBoy",
+        "sourceRelative":  "ECLASS/P603-PlayBoy",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "ECLASS",
+        "subFolder":  "P701-50ST",
+        "sourceRelative":  "ECLASS/P701-50ST",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "ECLASS",
+        "subFolder":  "P703-Mumbai",
+        "sourceRelative":  "ECLASS/P703-Mumbai",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "PremiumRoom",
+        "subFolder":  "202",
+        "sourceRelative":  "PremiumRoom/202",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "PremiumRoom",
+        "subFolder":  "303",
+        "sourceRelative":  "PremiumRoom/303",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg",
+                       "R4_00005.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "PremiumRoom",
+        "subFolder":  "402",
+        "sourceRelative":  "PremiumRoom/402",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "PremiumRoom",
+        "subFolder":  "502",
+        "sourceRelative":  "PremiumRoom/502",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "PremiumRoom",
+        "subFolder":  "602",
+        "sourceRelative":  "PremiumRoom/602",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg"
+                   ]
+    },
+    {
+        "roomClass":  "PremiumRoom",
+        "subFolder":  "702",
+        "sourceRelative":  "PremiumRoom/702",
+        "images":  [
+                       "R4_00001.jpg",
+                       "R4_00002.jpg",
+                       "R4_00003.jpg",
+                       "R4_00004.jpg"
+                   ]
+    }
+]
